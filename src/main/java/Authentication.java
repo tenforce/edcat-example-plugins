@@ -1,9 +1,9 @@
-import eu.lod2.edcat.handler.ActionAbortException;
-import eu.lod2.edcat.constraints.Constraint;
-import eu.lod2.edcat.handler.PreCreateHandler;
-import eu.lod2.edcat.handler.PreReadHandler;
-import eu.lod2.edcat.handler.PreUpdateHandler;
-import eu.lod2.edcat.constraints.Priority;
+import eu.lod2.edcat.hooks.util.ActionAbortException;
+import eu.lod2.edcat.hooks.constraints.Constraint;
+import eu.lod2.edcat.hooks.handlers.dcat.PreCreateHandler;
+import eu.lod2.edcat.hooks.handlers.dcat.PreReadHandler;
+import eu.lod2.edcat.hooks.handlers.dcat.PreUpdateHandler;
+import eu.lod2.edcat.hooks.constraints.Priority;
 import eu.lod2.edcat.utils.SparqlEngine;
 import org.springframework.stereotype.Repository;
 
