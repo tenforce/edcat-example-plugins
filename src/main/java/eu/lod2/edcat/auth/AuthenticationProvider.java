@@ -26,7 +26,8 @@ public class AuthenticationProvider implements PreCreateHandler,PreUpdateHandler
 
 
   private void authenticate(HttpServletRequest request) throws ActionAbortException {
-    if (!request.getHeader("Authorization").equals("wuk"))
+    String token = request.getHeader("Authorization");
+    if (null == token || !token.equals("wuk"))
       throw new ActionAbortException("illegal access");
   }
 
