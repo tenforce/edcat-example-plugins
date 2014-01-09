@@ -10,31 +10,39 @@ import eu.lod2.hooks.util.ActionAbortException;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
-public class AuthenticationProvider implements PreCreateHandler,PreUpdateHandler,PreReadHandler {
+public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandler, PreReadHandler {
 
-  @Override
-  public void handlePreCreate(HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
-    authenticate(request);
-  }
+    @Override
+    public void handlePreCreate(HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
+        authenticate(request);
+    }
 
-  @Override
-  public void handlePreUpdate(HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
-    authenticate(request);
-  }
-
-
-  private void authenticate(HttpServletRequest request) throws ActionAbortException {
-    String token = request.getHeader("Authorization");
-    if (null == token || !token.equals("wuk"))
-      throw new ActionAbortException("illegal access");
-  }
-
-  public List<Priority> getConstraintsFor(String hook) {
-    return Arrays.asList(Constraint.EARLY,Constraint.before("com.bleh.foo.Bar"));
-  }
+    @Override
+    public void handlePreUpdate(HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
+        authenticate(request);
+    }
 
 
+    private void authenticate(HttpServletRequest request) throws ActionAbortException {
+        String token = request.getHeader("Authorization");
+        if (null == token || !token.equals("wuk"))
+            throw new ActionAbortException("illegal access");
+    }
+
+    public List<Priority> getConstraintsFor(String hook) {
+        return Arrays.asList(
+                Constraint.EARLY,
+                Constraint.before("com.bleh.foo.Bar")
+        );
+    }
+
+
+    @Override
+    public Collection<Priority> getConstraints(String hook) {
+        return null;
+    }
 }
 
