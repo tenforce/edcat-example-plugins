@@ -9,6 +9,7 @@ import eu.lod2.hooks.handlers.dcat.PreUpdateHandler;
 import eu.lod2.hooks.util.ActionAbortException;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -43,7 +44,7 @@ public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandle
 
   @Override
   public Collection<Priority> getConstraints(String hook) {
-    return Collections.EMPTY_LIST;
+    return Arrays.asList(Constraint.EARLY);
   }
 
   @Override
