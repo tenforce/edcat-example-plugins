@@ -4,6 +4,7 @@ import eu.lod2.edcat.utils.Catalog;
 import eu.lod2.edcat.utils.SparqlEngine;
 import eu.lod2.hooks.constraints.Constraint;
 import eu.lod2.hooks.constraints.Priority;
+import eu.lod2.hooks.contexts.PreContext;
 import eu.lod2.hooks.handlers.dcat.PreCreateHandler;
 import eu.lod2.hooks.handlers.dcat.PreReadHandler;
 import eu.lod2.hooks.handlers.dcat.PreUpdateHandler;
@@ -18,39 +19,36 @@ import java.util.List;
 
 public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandler, PreReadHandler {
 
-  @Override
-  public void handlePreCreate(Catalog catalog, HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
-    authenticate(request);
-  }
-
-  @Override
-  public void handlePreUpdate(Catalog catalog, HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
-    authenticate(request);
-  }
-
-
-  private void authenticate(HttpServletRequest request) throws ActionAbortException {
-    String token = request.getHeader("Authorization");
-    if (null == token || !token.equals("wuk"))
-      throw new ActionAbortException("illegal access");
-  }
-
-  public List<Priority> getConstraintsFor(String hook) {
-    return Arrays.asList(
-            Constraint.EARLY,
-            Constraint.before("com.bleh.foo.Bar")
-    );
-  }
-
+  // --- PRIORITY
 
   @Override
   public Collection<Priority> getConstraints(String hook) {
     return Arrays.asList(Constraint.EARLY);
   }
 
-  @Override
-  public void handlePreRead(Catalog catalog, HttpServletRequest request, SparqlEngine engine) {
+  // --- HOOKS
 
+  @Override
+  public void handlePreCreate(PreContext context) throws ActionAbortException {
+    authenticate(context.getRequest());
+  }
+
+  @Override
+  public void handlePreUpdate(PreContext context) throws ActionAbortException {
+    authenticate(context.getRequest());
+  }
+
+  @Override
+  public void handlePreRead(PreContext context) throws ActionAbortException {
+    authenticate(context.getRequest());
+  }
+
+  // --- ASSERT AUTHENTICATION
+
+  private void authenticate(HttpServletRequest request) throws ActionAbortException {
+    String token = request.getHeader("Authorization");
+    if (null == token || !token.equals("wuk"))
+      throw new ActionAbortException("illegal access");
   }
 }
 
