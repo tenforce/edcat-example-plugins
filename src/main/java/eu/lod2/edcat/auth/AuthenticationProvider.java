@@ -1,7 +1,5 @@
 package eu.lod2.edcat.auth;
 
-import eu.lod2.edcat.utils.Catalog;
-import eu.lod2.edcat.utils.SparqlEngine;
 import eu.lod2.hooks.constraints.Constraint;
 import eu.lod2.hooks.constraints.Priority;
 import eu.lod2.hooks.contexts.PreContext;
@@ -11,11 +9,8 @@ import eu.lod2.hooks.handlers.dcat.PreUpdateHandler;
 import eu.lod2.hooks.util.ActionAbortException;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
 
 public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandler, PreReadHandler {
 
@@ -51,4 +46,3 @@ public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandle
       throw new ActionAbortException("illegal access");
   }
 }
-
