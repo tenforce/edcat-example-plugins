@@ -1,5 +1,6 @@
 package eu.lod2.edcat.auth;
 
+import eu.lod2.edcat.utils.Catalog;
 import eu.lod2.edcat.utils.SparqlEngine;
 import eu.lod2.hooks.constraints.Constraint;
 import eu.lod2.hooks.constraints.Priority;
@@ -18,12 +19,12 @@ import java.util.List;
 public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandler, PreReadHandler {
 
   @Override
-  public void handlePreCreate(HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
+  public void handlePreCreate(Catalog catalog, HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
     authenticate(request);
   }
 
   @Override
-  public void handlePreUpdate(HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
+  public void handlePreUpdate(Catalog catalog, HttpServletRequest request, SparqlEngine engine) throws ActionAbortException {
     authenticate(request);
   }
 
@@ -48,7 +49,7 @@ public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandle
   }
 
   @Override
-  public void handlePreRead(HttpServletRequest request, SparqlEngine engine) {
+  public void handlePreRead(Catalog catalog, HttpServletRequest request, SparqlEngine engine) {
 
   }
 }
