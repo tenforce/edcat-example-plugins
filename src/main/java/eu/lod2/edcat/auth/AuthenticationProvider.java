@@ -29,11 +29,11 @@ public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandle
   }
 
 
-  private void authenticate(HttpServletRequest request) throws ActionAbortException {
-    String token = request.getHeader("Authorization");
-    if (null == token || !token.equals("wuk"))
-      throw new ActionAbortException("illegal access");
-  }
+    private void authenticate(HttpServletRequest request) throws ActionAbortException {
+        String token = request.getHeader("Authorization");
+        if (null == token || !token.equals("wuk"))
+            throw new ActionAbortException("illegal access");
+    }
 
   public List<Priority> getConstraintsFor(String hook) {
     return Arrays.asList(
