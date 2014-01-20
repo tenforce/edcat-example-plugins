@@ -1,1 +1,2 @@
 eu.lod2.edcat.logger.Logger
+eu.lod2.edcat.hookLogger.HookLogger
