@@ -6,7 +6,8 @@ import eu.lod2.hooks.contexts.PreContext;
 import eu.lod2.hooks.handlers.dcat.PreCreateHandler;
 import eu.lod2.hooks.handlers.dcat.PreReadHandler;
 import eu.lod2.hooks.handlers.dcat.PreUpdateHandler;
-import eu.lod2.hooks.util.ActionAbortException;
+import eu.lod2.hooks.handlers.dcat.ActionAbortException;
+import org.springframework.http.HttpStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Arrays;
@@ -43,6 +44,6 @@ public class AuthenticationProvider implements PreCreateHandler, PreUpdateHandle
   private void authenticate(HttpServletRequest request) throws ActionAbortException {
     String token = request.getHeader("Authorization");
     if (null == token || !token.equals("wuk"))
-      throw new ActionAbortException("illegal access");
+      throw new ActionAbortException(HttpStatus.FORBIDDEN,"illegal access");
   }
 }
