@@ -6,7 +6,7 @@ import eu.lod2.hooks.handlers.dcat.PreCreateHandler;
 import eu.lod2.hooks.handlers.dcat.PreDestroyHandler;
 import eu.lod2.hooks.handlers.dcat.PreReadHandler;
 import eu.lod2.hooks.handlers.dcat.PreUpdateHandler;
-import eu.lod2.hooks.util.ActionAbortException;
+import eu.lod2.hooks.handlers.dcat.ActionAbortException;
 import org.slf4j.LoggerFactory;
 
 import java.util.Collection;
