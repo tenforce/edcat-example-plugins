@@ -2,10 +2,10 @@ package eu.lod2.edcat.auth;
 
 import eu.lod2.hooks.constraints.Constraint;
 import eu.lod2.hooks.constraints.Priority;
-import eu.lod2.hooks.contexts.PreContext;
-import eu.lod2.hooks.handlers.dcat.PreCreateHandler;
-import eu.lod2.hooks.handlers.dcat.PreReadHandler;
-import eu.lod2.hooks.handlers.dcat.PreUpdateHandler;
+import eu.lod2.hooks.contexts.dataset.PreContext;
+import eu.lod2.hooks.handlers.dcat.dataset.PreCreateHandler;
+import eu.lod2.hooks.handlers.dcat.dataset.PreReadHandler;
+import eu.lod2.hooks.handlers.dcat.dataset.PreUpdateHandler;
 import eu.lod2.hooks.handlers.dcat.ActionAbortException;
 import org.springframework.http.HttpStatus;
 
